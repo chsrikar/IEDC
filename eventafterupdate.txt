@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | IEDC VISAT</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">IEDC VISAT</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+    <section class="events-hero" data-aos="fade-up">
+        <div class="container">
+            <h1>Our Events</h1>
+            <p class="events-tagline">Explore our latest and greatest events at IEDC VISAT</p>
+        </div>
+    </section>
+    <section class="events-timeline container">
+    <div class="event-card" data-aos="fade-right">
+        <img src="assets/project1.jpg" alt="Hackathon">
+        <div class="event-info">
+            <h3>Hackathon 2025</h3>
+            <span class="event-date">March 15, 2025</span>
+            <p>24-hour innovation challenge for students to build solutions for real-world problems.</p>
+        </div>
+    </div>
+    <div class="event-card" data-aos="fade-left" data-aos-delay="100">
+        <img src="assets/project2.jpg" alt="AI & IoT Workshop">
+        <div class="event-info">
+            <h3>AI & IoT Workshop</h3>
+            <span class="event-date">February 10, 2025</span>
+            <p>Hands-on workshop introducing Artificial Intelligence and Internet of Things.</p>
+        </div>
+    </div>
+    <div class="event-card" data-aos="fade-right" data-aos-delay="200">
+        <img src="assets/project3.jpg" alt="Entrepreneurship Seminar">
+        <div class="event-info">
+            <h3>Entrepreneurship Seminar</h3>
+            <span class="event-date">January 20, 2025</span>
+            <p>Insights from industry leaders on building startups and innovation culture.</p>
+        </div>
+    </div>
+    <div class="event-card" data-aos="fade-left" data-aos-delay="300">
+        <img src="assets/project1.jpg" alt="Design Sprint">
+        <div class="event-info">
+            <h3>Design Sprint</h3>
+            <span class="event-date">April 5, 2025</span>
+            <p>Rapid prototyping and design thinking workshop for creative problem solving.</p>
+        </div>
+    </div>
+    <div class="event-card" data-aos="fade-right" data-aos-delay="400">
+        <img src="assets/project2.jpg" alt="Startup Pitch Day">
+        <div class="event-info">
+            <h3>Startup Pitch Day</h3>
+            <span class="event-date">May 2, 2025</span>
+            <p>Student teams pitch their startups to a panel of investors and mentors.</p>
+        </div>
+    </div>
+</section>
+    </section>
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-logo">IEDC VISAT</div>
+            <div class="footer-socials">
+                <a href="#" class="social-icon" aria-label="Instagram"><img src="assets/instagram.svg" alt="Instagram"></a>
+                <a href="#" class="social-icon" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn"></a>
+                <a href="#" class="social-icon" aria-label="Mail"><img src="assets/mail.svg" alt="Mail"></a>
+            </div>
+            <div class="footer-contact">
+                <span>contact@iedcvisat.in</span>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 900,
+        once: true,
+        offset: 80
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | IEDC VISAT</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">IEDC VISAT</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+    <section class="contact-hero" data-aos="fade-up">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p class="contact-tagline">We'd love to hear from you!</p>
+        </div>
+    </section>
+    <section class="contact-section container">
+        <form class="contact-form" data-aos="fade-right">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+        <div class="contact-details" data-aos="fade-left">
+            <div class="contact-socials">
+                <a href="#" class="social-icon" aria-label="Instagram"><img src="assets/instagram.svg" alt="Instagram"></a>
+                <a href="#" class="social-icon" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn"></a>
+                <a href="#" class="social-icon" aria-label="Mail"><img src="assets/mail.svg" alt="Mail"></a>
+            </div>
+            <div class="contact-info">
+                <p>Email: contact@iedcvisat.in</p>
+                <p>VISAT Campus, Elanji, Ernakulam, Kerala</p>
+            </div>
+            <div class="contact-map">
+                <!-- Optional: Google Map Embed -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.123456789!2d76.5678!3d9.8734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080f2c2b2e7cfd%3A0x7e8e2a7e5b0e7f2c!2sVISAT%20Campus!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin" width="100%" height="180" style="border:0;border-radius:0.7rem;margin-top:1rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-logo">IEDC VISAT</div>
+            <div class="footer-socials">
+                <a href="#" class="social-icon" aria-label="Instagram"><img src="assets/instagram.svg" alt="Instagram"></a>
+                <a href="#" class="social-icon" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn"></a>
+                <a href="#" class="social-icon" aria-label="Mail"><img src="assets/mail.svg" alt="Mail"></a>
+            </div>
+            <div class="footer-contact">
+                <span>contact@iedcvisat.in</span>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 900,
+        once: true,
+        offset: 80
+      });
+    </script>
+</body>
+</html>
