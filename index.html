@@ -6,9 +6,64 @@
     <title>IEDC VISAT</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/NOBG.png" />
+
+   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+    }
+
+    .hero-section {
+      background: url('assets/iedcv.jpg') no-repeat center center;
+      background-size: 100% 100%;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      color: white;
+    }
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      text-shadow: 0 0 10px #00f0ff;
+    }
+
+    .hero-content p {
+      font-size: 1.5rem;
+      text-shadow: 0 0 5px #00f0ff;
+    }
+  </style>
+
+
 </head>
 <body>
     <!-- Sticky Navbar -->
@@ -29,11 +84,16 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <img src="assets/NOBG.png" alt="IEDC Logo" class="hero-logo" data-aos="fade-up">
-        <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">Innovate. Inspire. Ignite.</h1>
-        <p class="hero-tagline" data-aos="fade-up" data-aos-delay="400">Empowering Innovation at VISAT</p>
-    </section>
+<section class="hero-section">
+  <div class="hero-content">
+    <h1 id="txt1">Innovate. Inspire. Ignite.</h1>
+    <p id="txt2">Empowering Innovation at VISAT</p>
+  </div>
+</section>
+
+
+
+
 
     <!-- About Section -->
     <section id="about" class="about-section" data-aos="fade-right">
@@ -147,12 +207,11 @@
         <div class="container footer-container">
             <div class="footer-logo">IEDC VISAT</div>
             <div class="footer-socials">
-                <a href="#" class="social-icon" aria-label="Instagram"><img src="assets/instagram.svg" alt="Instagram"></a>
-                <a href="#" class="social-icon" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn"></a>
-                <a href="#" class="social-icon" aria-label="Mail"><img src="assets/mail.svg" alt="Mail"></a>
+                <a href="#" class="social-icon" aria-label="Instagram"><img src="assets/insta.png" alt="Instagram"></a>
+                <a href="#" class="social-icon" aria-label="LinkedIn"><img src="assets/linkedin.png" alt="LinkedIn"></a>
             </div>
             <div class="footer-contact">
-                <span>contact@iedcvisat.in</span>
+                <span>iedcvisat25@gmail.com</span>
             </div>
         </div>
     </footer>
