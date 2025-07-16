@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/NOBG.png" />
 
    <style>
@@ -19,6 +20,264 @@
 
     body, html {
       height: 100%;
+    }
+
+    /* Loading Screen Styles */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0A0F1C 0%, #111827 50%, #0A0F1C 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      overflow: hidden;
+    }
+
+    .loading-screen::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+      animation: backgroundPulse 4s ease-in-out infinite;
+    }
+
+    .loading-screen::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(0, 207, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+      animation: circuitPulse 6s ease-in-out infinite;
+    }
+
+    .loading-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .loading-logo {
+      font-family: 'Orbitron', monospace;
+      font-size: 4rem;
+      font-weight: 900;
+      color: #00CFFF;
+      text-shadow: 
+        0 0 20px #00CFFF,
+        0 0 40px #00CFFF,
+        0 0 60px #00CFFF,
+        0 0 80px #00CFFF;
+      margin-bottom: 2rem;
+      animation: logoGlow 2s ease-in-out infinite alternate;
+      letter-spacing: 4px;
+    }
+
+    .loading-subtitle {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.2rem;
+      color: #C0C0C0;
+      text-shadow: 0 0 10px rgba(0, 207, 255, 0.5);
+      margin-bottom: 3rem;
+      animation: subtitlePulse 3s ease-in-out infinite;
+    }
+
+    .loading-progress {
+      width: 400px;
+      height: 6px;
+      background: linear-gradient(90deg, #2A2A2A, #1A1A1A);
+      border-radius: 3px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      border: 1px solid rgba(0, 207, 255, 0.3);
+      box-shadow: 
+        0 0 10px rgba(0, 207, 255, 0.3),
+        inset 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .loading-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00CFFF, #00A8CC, #00CFFF);
+      border-radius: 3px;
+      width: 0%;
+      animation: progressFill 3s ease-in-out forwards;
+      box-shadow: 
+        0 0 20px #00CFFF,
+        0 0 40px rgba(0, 207, 255, 0.5);
+      position: relative;
+    }
+
+    .loading-progress-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: shimmer 2s linear infinite;
+    }
+
+    .loading-text {
+      font-family: 'Orbitron', monospace;
+      font-size: 1rem;
+      color: #FFFFFF;
+      text-shadow: 0 0 15px rgba(0, 207, 255, 0.8);
+      animation: textBlink 2s ease-in-out infinite;
+      letter-spacing: 1px;
+    }
+
+    .loading-dots {
+      display: inline-block;
+      animation: loadingDots 1.5s infinite;
+    }
+
+    /* Circuit Animation */
+    .circuit-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      background-image: 
+        linear-gradient(90deg, transparent 98%, #00CFFF 100%),
+        linear-gradient(0deg, transparent 98%, #00CFFF 100%);
+      background-size: 50px 50px;
+      animation: circuitMove 10s linear infinite;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes logoGlow {
+      0% {
+        text-shadow: 
+          0 0 20px #00CFFF,
+          0 0 40px #00CFFF,
+          0 0 60px #00CFFF,
+          0 0 80px #00CFFF;
+      }
+      100% {
+        text-shadow: 
+          0 0 30px #00CFFF,
+          0 0 50px #00CFFF,
+          0 0 70px #00CFFF,
+          0 0 100px #00CFFF;
+      }
+    }
+
+    @keyframes subtitlePulse {
+      0%, 100% {
+        opacity: 0.7;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes progressFill {
+      0% { width: 0%; }
+      30% { width: 30%; }
+      60% { width: 70%; }
+      100% { width: 100%; }
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    @keyframes textBlink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0.7; }
+    }
+
+    @keyframes loadingDots {
+      0%, 20% { color: #00CFFF; }
+      40% { color: #C0C0C0; }
+      60% { color: #00CFFF; }
+      80%, 100% { color: #C0C0C0; }
+    }
+
+    @keyframes backgroundPulse {
+      0%, 100% {
+        background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+      }
+      50% {
+        background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.2) 0%, transparent 70%);
+      }
+    }
+
+    @keyframes circuitPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    @keyframes circuitMove {
+      0% { transform: translateX(0) translateY(0); }
+      100% { transform: translateX(50px) translateY(50px); }
+    }
+
+    /* Fade out animation */
+    .loading-screen.fade-out {
+      animation: fadeOut 1s ease-out forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .loading-logo {
+        font-size: 2.5rem;
+      }
+      
+      .loading-subtitle {
+        font-size: 1rem;
+      }
+      
+      .loading-progress {
+        width: 300px;
+      }
+      
+      .loading-text {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .loading-logo {
+        font-size: 2rem;
+      }
+      
+      .loading-progress {
+        width: 250px;
+      }
     }
 
     .hero-section {
@@ -63,9 +322,21 @@
     }
   </style>
 
-
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="circuit-lines"></div>
+        <div class="loading-content">
+            <div class="loading-logo">IEDC VISAT</div>
+            <div class="loading-subtitle">Innovation • Entrepreneurship • Development</div>
+            <div class="loading-progress">
+                <div class="loading-progress-bar"></div>
+            </div>
+            <div class="loading-text">Booting Innovation Engine<span class="loading-dots">...</span></div>
+        </div>
+    </div>
+
     <!-- Sticky Navbar -->
     <nav class="navbar">
         <div class="container nav-container">
@@ -166,19 +437,19 @@
             <h2 data-aos="fade-left">Project Highlights</h2>
             <div class="projects-grid">
                 <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="assets/project1.jpg" alt="Project 1">
-                    <h3>Project Alpha</h3>
-                    <p>AI-powered campus assistant for smarter learning.</p>
+                    <img src="assets/DIY-Projects.png" alt="Project 1">
+                    <h3>DIY Projects</h3>
+                    <p>IEDC DIY Projects foster hands-on innovation by encouraging students to build, experiment, and solve real-world problems. These projects ignite creativity and transform ideas into impactful solutions through a maker-driven approach.</p>
                 </div>
                 <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="assets/project2.jpg" alt="Project 2">
-                    <h3>EcoSmart</h3>
-                    <p>IoT-based energy monitoring for sustainable campuses.</p>
+                    <img src="assets/auto.jpg" alt="Project 2">
+                    <h3>Solar-Based AUTO</h3>
+                    <p>The Solar-Based Auto by Sonu Sunil and it's is an eco-friendly Auto powered entirely by solar energy and built from scratch promoting sustainable mobility. It showcases innovative engineering aimed at reducing carbon footprint and enhancing energy efficiency.</p>
                 </div>
                 <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="assets/project3.jpg" alt="Project 3">
-                    <h3>MedConnect</h3>
-                    <p>Healthcare platform connecting students and experts.</p>
+                    <img src="assets/robot.jpg" alt="Project 3">
+                    <h3>IEDC ROBOT</h3>
+                    <p>The upcoming IEDC humanoid robot leverages RAG architecture with LLMs and advanced NLP to enable natural, context-aware conversations. It’s designed to simulate human interaction and dynamically retrieve accurate responses in real time.</p>
                 </div>
             </div>
         </div>
@@ -207,8 +478,8 @@
         <div class="container footer-container">
             <div class="footer-logo">IEDC VISAT</div>
             <div class="footer-socials">
-                <a href="#" class="social-icon" aria-label="Instagram"><img src="assets/insta.png" alt="Instagram"></a>
-                <a href="#" class="social-icon" aria-label="LinkedIn"><img src="assets/linkedin.png" alt="LinkedIn"></a>
+            <a href="https://www.linkedin.com/company/iedc-visat/posts/?feedView=all" class="social-icon"><img src="assets/linkedin.png" alt="LinkedIn"></a>
+            <a href="https://www.instagram.com/iedc_visat?utm_source=ig_web_button_share_sheet&igsh=YTkwaTI2a3Q2ZGk5" class="social-icon"><img src="assets/download.jpg" alt="Instagram"></a>
             </div>
             <div class="footer-contact">
                 <span>iedcvisat25@gmail.com</span>
@@ -219,10 +490,26 @@
     <script src="js/main.js"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
-      AOS.init({
-        duration: 900,
-        once: true,
-        offset: 80
+      // Loading Screen Logic
+      window.addEventListener('load', function() {
+        const loadingScreen = document.getElementById('loadingScreen');
+        
+        // Simulate loading time (3.5 seconds)
+        setTimeout(function() {
+          loadingScreen.classList.add('fade-out');
+          
+          // Remove loading screen after fade out animation
+          setTimeout(function() {
+            loadingScreen.style.display = 'none';
+            
+            // Initialize AOS after loading screen is hidden
+            AOS.init({
+              duration: 900,
+              once: true,
+              offset: 80
+            });
+          }, 1000);
+        }, 3500);
       });
     </script>
 </body>
