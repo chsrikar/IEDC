@@ -14,6 +14,10 @@
   <link rel="icon" type="image/png" href="assets/NOBG.png" />
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
     .gallery-section {
       background: linear-gradient(135deg, #0A0F1C 60%, #111827 100%);
       min-height: 100vh;
@@ -30,52 +34,172 @@
       font-size: 2.2rem;
       text-align: center;
       letter-spacing: 2px;
-      margin-bottom: 2.2rem;
+      margin-bottom: 3rem;
     }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      max-width: 1120px;
-      margin: 0 auto;
+    
+    .gallery-subsection {
+      margin-bottom: 4rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
       padding: 0 1.5rem;
     }
-    @media (max-width: 900px) {
+    
+    .subsection-title {
+      font-family: 'Orbitron', 'Rajdhani', sans-serif;
+      color: #00CFFF;
+      text-shadow: 0 0 8px #00CFFF;
+      font-size: 1.8rem;
+      text-align: center;
+      letter-spacing: 1px;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid rgba(0, 207, 255, 0.3);
+      padding-bottom: 0.5rem;
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    
+    @media (max-width: 768px) {
       .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
       }
     }
-    @media (max-width: 600px) {
+    
+    @media (max-width: 480px) {
       .gallery-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 0.8rem;
       }
     }
+    
     .gallery-card {
       background: rgba(19,26,43,0.93);
-      border-radius: 20px;
-      box-shadow: 0 0 24px 0 #00CFFF66, 0 0 32px 0 #A855F733;
+      border-radius: 15px;
+      box-shadow: 0 4px 16px rgba(0, 207, 255, 0.2);
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       aspect-ratio: 1 / 1;
-      transition: box-shadow 0.3s cubic-bezier(.4,0,.2,1), transform 0.3s cubic-bezier(.4,0,.2,1);
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
       cursor: pointer;
       padding: 0;
+      border: 1px solid rgba(0, 207, 255, 0.1);
     }
+    
     .gallery-card:hover {
-      box-shadow: 0 0 32px #00CFFF, 0 0 48px #A855F7;
-      transform: scale(1.05);
+      box-shadow: 0 8px 32px rgba(0, 207, 255, 0.4), 0 0 20px rgba(138, 43, 226, 0.3);
+      transform: translateY(-5px) scale(1.02);
+      border-color: rgba(0, 207, 255, 0.5);
     }
+    
     .gallery-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      aspect-ratio: 1 / 1;
       display: block;
-      background: #0A0F1C;
-      border-radius: 20px;
-      transition: filter 0.3s;
+      transition: filter 0.3s ease;
+    }
+    
+    .gallery-card:hover .gallery-img {
+      filter: brightness(1.1) saturate(1.2);
+    }
+    
+    /* Video styling */
+    .gallery-card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+    
+    .gallery-card video::-webkit-media-controls-panel {
+      background: rgba(0, 0, 0, 0.8);
+    }
+    
+    .gallery-card video::-webkit-media-controls-play-button {
+      background-color: #00CFFF;
+      border-radius: 50%;
+    }
+    
+    /* Small video card for Nidhivetta */
+    .video-card-small {
+      grid-column: span 1;
+      max-width: 300px;
+      justify-self: center;
+    }
+    
+    @media (max-width: 768px) {
+      .video-card-small {
+        max-width: 250px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .video-card-small {
+        max-width: 200px;
+      }
+    }
+    
+    /* Small image card for Craft Auction */
+    .image-card-small {
+      grid-column: span 1;
+      max-width: 300px;
+      justify-self: center;
+    }
+    
+    @media (max-width: 768px) {
+      .image-card-small {
+        max-width: 250px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .image-card-small {
+        max-width: 200px;
+      }
+    }
+    
+    /* Lightbox styles */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .lightbox.active {
+      display: flex;
+    }
+    
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 0 50px rgba(0, 207, 255, 0.5);
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #00CFFF;
+      font-size: 3rem;
+      cursor: pointer;
+      z-index: 1001;
     }
   </style>
 </head>
@@ -97,13 +221,95 @@
   </nav>
   <section class="gallery-section">
     <h2 class="gallery-title">Gallery</h2>
-    <div class="gallery-grid">
-      <div class="gallery-card" data-aos="zoom-in"><img src="assets/AGM.jpg" alt="Gallery 1" class="gallery-img"></div>
-      <div class="gallery-card" data-aos="zoom-in" data-aos-delay="50"><img src="mr&ms aura/8.jpg" alt="Gallery 2" class="gallery-img"></div>
-      <div class="gallery-card" data-aos="zoom-in" data-aos-delay="100"><img src="iedathon/20.jpg" alt="Gallery 3" class="gallery-img"></div>
-      <div class="gallery-card" data-aos="zoom-in" data-aos-delay="150"><img src="assets/1.jpg" alt="Gallery 4" class="gallery-img"></div>
-      <div class="gallery-card" data-aos="zoom-in" data-aos-delay="200"><img src="mr&ms aura/4.jpg" alt="Gallery 5" class="gallery-img"></div>
-      <div class="gallery-card" data-aos="zoom-in" data-aos-delay="250"><img src="iedathon/16.jpg" alt="Gallery 6" class="gallery-img"></div>
+    
+    <!-- AGM Section -->
+    <div class="gallery-subsection" id="agm">
+      <h3 class="subsection-title" data-aos="fade-up">AGM</h3>
+      <div class="gallery-grid">
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="0"><img src="assets/AGM.jpg" alt="AGM 1" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="50"><img src="assets/1.jpg" alt="AGM 2" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="100"><img src="assets/2.jpg" alt="AGM 3" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="150"><img src="assets/3.jpg" alt="AGM 4" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <!-- Repeat for more AGM images -->
+      </div>
+    </div>
+    
+    <!-- Mr & Ms Aura Section -->
+    <div class="gallery-subsection" id="mr-ms-aura">
+      <h3 class="subsection-title" data-aos="fade-up">Mr & Ms Aura</h3>
+      <div class="gallery-grid">
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="0"><img src="mr&ms aura/1.jpg" alt="Mr & Ms Aura 1" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="50"><img src="mr&ms aura/2.jpg" alt="Mr & Ms Aura 2" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="100"><img src="mr&ms aura/3.jpg" alt="Mr & Ms Aura 3" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="150"><img src="mr&ms aura/4.jpg" alt="Mr & Ms Aura 4" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="200"><img src="mr&ms aura/5.jpg" alt="Mr & Ms Aura 5" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="250"><img src="mr&ms aura/6.jpg" alt="Mr & Ms Aura 6" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="300"><img src="mr&ms aura/7.jpg" alt="Mr & Ms Aura 7" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="350"><img src="mr&ms aura/8.jpg" alt="Mr & Ms Aura 8" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="400"><img src="mr&ms aura/9.jpg" alt="Mr & Ms Aura 9" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="450"><img src="mr&ms aura/10.jpg" alt="Mr & Ms Aura 10" class="gallery-img" onclick="openLightbox(this.src)"></div>
+      </div>
+    </div>
+    
+
+        
+    <!-- Nidhivetta - Treasure Hunt Section -->
+    <div class="gallery-subsection" id="nidhivetta">
+      <h3 class="subsection-title" data-aos="fade-up">Nidhivetta - Treasure Hunt</h3>
+      <div class="gallery-grid">
+        <div class="gallery-card video-card-small" data-aos="zoom-in" data-aos-delay="50">
+          <video class="gallery-img" controls style="object-fit: cover;">
+            <source src="nidhivetta/nidhivetta .mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <!-- Add more nidhivetta images here -->
+      </div>
+    </div>
+    
+    <!-- Ideathon Section -->
+    <div class="gallery-subsection" id="ideathon">
+      <h3 class="subsection-title" data-aos="fade-up">Ideathon</h3>
+      <div class="gallery-grid">
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="0"><img src="iedathon/1.jpg" alt="Ideathon 1" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="50"><img src="iedathon/2.jpg" alt="Ideathon 2" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="100"><img src="iedathon/3.jpg" alt="Ideathon 3" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="150"><img src="iedathon/4.jpg" alt="Ideathon 4" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="200"><img src="iedathon/5.jpg" alt="Ideathon 5" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="250"><img src="iedathon/6.jpg" alt="Ideathon 6" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="300"><img src="iedathon/7.jpg" alt="Ideathon 7" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="350"><img src="iedathon/8.jpg" alt="Ideathon 8" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="400"><img src="iedathon/10.jpg" alt="Ideathon 10" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="450"><img src="iedathon/11.jpg" alt="Ideathon 11" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="500"><img src="iedathon/12.jpg" alt="Ideathon 12" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="550"><img src="iedathon/14.jpg" alt="Ideathon 14" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="600"><img src="iedathon/15.jpg" alt="Ideathon 15" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="650"><img src="iedathon/16.jpg" alt="Ideathon 16" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="700"><img src="iedathon/17.jpg" alt="Ideathon 17" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="750"><img src="iedathon/18.jpg" alt="Ideathon 18" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="800"><img src="iedathon/19.jpg" alt="Ideathon 19" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="850"><img src="iedathon/20.jpg" alt="Ideathon 20" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="900"><img src="iedathon/21.jpg" alt="Ideathon 21" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <div class="gallery-card" data-aos="zoom-in" data-aos-delay="950"><img src="iedathon/22.jpg" alt="Ideathon 22" class="gallery-img" onclick="openLightbox(this.src)"></div>
+      </div>
+    </div>
+    
+    <!-- Craft Auction Section -->
+    <div class="gallery-subsection" id="craft-auction">
+      <h3 class="subsection-title" data-aos="fade-up">Craft Auction</h3>
+      <div class="gallery-grid">
+        <div class="gallery-card image-card-small" data-aos="zoom-in" data-aos-delay="0"><img src="craft auction.jpg" alt="Craft Auction 1" class="gallery-img" onclick="openLightbox(this.src)"></div>
+        <!-- Add more craft auction images here -->
+      </div>
+    </div>
+    
+
+    
+    
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+      <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+      <img class="lightbox-img" id="lightbox-img" src="" alt="Enlarged view">
     </div>
   </section>
   <footer class="footer">
@@ -117,6 +323,30 @@
     </div>
   </footer>
   <script src="js/main.js"></script>
-  <script>AOS.init({ duration: 900, offset: 80, once: true });</script>
+  <script>
+    AOS.init({ duration: 900, offset: 80, once: true });
+    
+    // Lightbox functionality
+    function openLightbox(imageSrc) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = imageSrc;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
 </body>
 </html>
